@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="initial-scale1.0, user-scalable=no" />
+		<style type="text/css">
+			html { height: 100% }
+			body { height: 100%; margin: 0; padding: 0 }
+			#map_canvas { height: 80% }
+		</style>
+		
+		<script type="text/javascript"
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbrtiZHhh8m_5vtLf8dhERoNwAb_12tyQ&sensor=true">
+			
+		</script>
+		
+		<script type="text/javascript">
+		var geocoder;
+		var map;
+		
+		function initialize() {
+			geocoder = new google.maps.Geocoder();
+			var latlng = new google.maps.LatLng(38.443, -78.8728)
+			var mapOptions = {
+				zoom: 8,
+				center: latlng,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			}
+			map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+  }
+			
+			function codeAddress() {
+				var address = document.getElementById("address").value;
+				geocoder.geocode( { 'address': address}, function(results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						map.setCenter(results[0].geometry.location);
+				var marker = new google.maps.Marker({
+				map: map,
+				position: results[0].geometry.location
+			});
+			} else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+	// A big thanks to the Google API developers and tutorials for providing the code necessary to make this project possible // 
+	// Also a big thanks to Paul Rose for helping with the thought process and idea of how this lab should be tackled // 
+		</script>
+		
+		<h2 style = "background-color: purple; color: yellow; text-align:center; font-family: Times New Roman">
+		ISAT 252 Map
+		</h2>
+	</head>
+	<body onload="initialize(22807)">
+		<div id="map_canvas" style="width:100%; height;60%"></div>
+			<div>
+				<input id="address" type="textbox" value="">
+				<input type="button" value="Find this Zip Code" onClick="codeAddress()">
+			</div>
+	</body>
+	
+	
+</html>	
+					
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
